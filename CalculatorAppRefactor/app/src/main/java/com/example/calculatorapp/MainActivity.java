@@ -1,6 +1,8 @@
 package com.example.calculatorapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +14,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private EditText etNum1, etNum2, etOperation;
     private TextView tvResultText;
-    private Button btnCalculateResult;
     private Toast toastError;
 
 
@@ -25,16 +26,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etNum2=findViewById(R.id.num2_edit_text);
         etOperation=findViewById(R.id.operation_edit_text);
         tvResultText=findViewById(R.id.result_text_view);
-        btnCalculateResult=findViewById(R.id.calculate_result_button);
+        Button btnCalculateResult = findViewById(R.id.calculate_result_button);
         btnCalculateResult.setOnClickListener(this);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
 
         float num1, num2, result=0;
         boolean correctOperation=true;
-        String operation="";
+        String operation;
         try {
             num1 = Float.parseFloat(etNum1.getText().toString());
             num2 = Float.parseFloat(etNum2.getText().toString());
@@ -97,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             toastError=Toast.makeText(this,R.string.wrong_operation,duration);
             toastError.show();
-            return;
         }
     }
 }
